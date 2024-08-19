@@ -203,6 +203,7 @@ class Utils
         $db = Typecho_Db::get();
         $content = $db->fetchRow($db->select()->from('table.contents')
             ->where('table.contents.status = ?', 'publish')
+            ->where('table.contents.created> 0')
             ->where('table.contents.password IS NULL')
             ->order('table.contents.created', Typecho_Db::SORT_ASC)
             ->limit(1));

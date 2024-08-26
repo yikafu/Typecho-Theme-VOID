@@ -81,6 +81,10 @@ function themeConfig($form)
     // 超高级设置
     $advance = new Typecho_Widget_Helper_Form_Element_Textarea('advance', null, null, '超高级设置', '主题中包含一份 advanceSetting.sample.json，自己仿照着写吧。');
     $form->addInput($advance);
+
+    // radio 选项，默认为否
+    $rad = new Typecho_Widget_Helper_Form_Element_Radio('rad', array('0' => '否', '1' => '是'), '0', _t('是否使用本地json'), _t('默认否，否则使用目录下的advanceSetting.json'));
+    $form->addInput($rad);
 }
 
 /**

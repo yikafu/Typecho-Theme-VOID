@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Utils.php
  * 
@@ -55,7 +56,7 @@ class Utils
      * 
      * @return bool
      */
-    public static function isPluginAvailable($name) 
+    public static function isPluginAvailable($name)
     {
         $plugins = Typecho_Plugin::export();
         $plugins = $plugins['activated'];
@@ -77,8 +78,8 @@ class Utils
      */
     public static function isSerif($setting)
     {
-        if(isset($_COOKIE['serif'])) {
-            if ($_COOKIE['serif']=='1') return true; 
+        if (isset($_COOKIE['serif'])) {
+            if ($_COOKIE['serif'] == '1') return true;
         } else {
             if ($setting['serifincontent']) return true;
         }
@@ -89,8 +90,9 @@ class Utils
      * 界面大小风格
      * 1: 14px, 2: 16px, 3: 18px, 4: 20px, 5: 22px
      */
-    public static function getTextSize($setting) {
-        if(isset($_COOKIE['textsize'])) {
+    public static function getTextSize($setting)
+    {
+        if (isset($_COOKIE['textsize'])) {
             return $_COOKIE['textsize'];
         } else {
             return $setting['defaultFontSize'];
@@ -103,20 +105,52 @@ class Utils
      * @return bool
      */
     public static function isMobile()
-    { 
-        if (isset ($_SERVER['HTTP_X_WAP_PROFILE'])){
+    {
+        if (isset($_SERVER['HTTP_X_WAP_PROFILE'])) {
             return TRUE;
         }
-        
-        if (isset ($_SERVER['HTTP_USER_AGENT'])) {
-            $clientkeywords = array ('mobile','nokia','sony','ericsson','mot','samsung','htc','sgh','lg','sharp','sie-','philips','panasonic','alcatel','lenovo','iphone','ipod','blackberry','meizu','android','netfront','symbian','ucweb','windowsce','palm','operamini','operamobi','openwave','nexusone','cldc','midp','wap'
-                ); 
-            if (preg_match("/(" . implode('|', $clientkeywords) . ")/i", strtolower($_SERVER['HTTP_USER_AGENT']))){
+
+        if (isset($_SERVER['HTTP_USER_AGENT'])) {
+            $clientkeywords = array(
+                'mobile',
+                'nokia',
+                'sony',
+                'ericsson',
+                'mot',
+                'samsung',
+                'htc',
+                'sgh',
+                'lg',
+                'sharp',
+                'sie-',
+                'philips',
+                'panasonic',
+                'alcatel',
+                'lenovo',
+                'iphone',
+                'ipod',
+                'blackberry',
+                'meizu',
+                'android',
+                'netfront',
+                'symbian',
+                'ucweb',
+                'windowsce',
+                'palm',
+                'operamini',
+                'operamobi',
+                'openwave',
+                'nexusone',
+                'cldc',
+                'midp',
+                'wap'
+            );
+            if (preg_match("/(" . implode('|', $clientkeywords) . ")/i", strtolower($_SERVER['HTTP_USER_AGENT']))) {
                 return TRUE;
             }
         }
-        if (isset ($_SERVER['HTTP_ACCEPT'])){
-            if ((strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') !== FALSE) && (strpos($_SERVER['HTTP_ACCEPT'], 'text/html') === FALSE || (strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') < strpos($_SERVER['HTTP_ACCEPT'], 'text/html')))){
+        if (isset($_SERVER['HTTP_ACCEPT'])) {
+            if ((strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') !== FALSE) && (strpos($_SERVER['HTTP_ACCEPT'], 'text/html') === FALSE || (strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') < strpos($_SERVER['HTTP_ACCEPT'], 'text/html')))) {
                 return TRUE;
             }
         }
@@ -126,7 +160,8 @@ class Utils
     /**
      * iOS 判定
      */
-    public static function isIosSafari () {
+    public static function isIosSafari()
+    {
         return strpos($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strpos($_SERVER['HTTP_USER_AGENT'], 'iPad');
     }
 
@@ -148,7 +183,7 @@ class Utils
         echo '<link rel="stylesheet" href="';
         self::indexTheme('/assets/libs/owo/owo.min.css');
         echo '" />';
-       
+
         echo '<style>#custom-field textarea,#custom-field input{width:100%}
         .OwO span{background:none!important;width:unset!important;height:unset!important}
         .OwO .OwO-body .OwO-items{
@@ -185,12 +220,14 @@ class Utils
      */
     public static function isOutdated($archive)
     {
-        $created = round((time()- $archive->created) / 3600 / 24);
-        $updated = round((time()- $archive->modified) / 3600 / 24);
+        $created = round((time() - $archive->created) / 3600 / 24);
+        $updated = round((time() - $archive->modified) / 3600 / 24);
 
-        return array("is" => $created > 90,
-                    "created" => $created,
-                    "updated" => $updated);
+        return array(
+            "is" => $created > 90,
+            "created" => $created,
+            "updated" => $updated
+        );
     }
 
     /**
@@ -222,9 +259,9 @@ class Utils
     {
         $db = Typecho_Db::get();
         return $db->fetchObject($db->select(array('COUNT(cid)' => 'num'))
-                    ->from('table.contents')
-                    ->where('table.contents.type = ?', 'post')
-                    ->where('table.contents.status = ?', 'publish'))->num;
+            ->from('table.contents')
+            ->where('table.contents.type = ?', 'post')
+            ->where('table.contents.status = ?', 'publish'))->num;
     }
 
     /**
@@ -236,8 +273,8 @@ class Utils
     {
         $db = Typecho_Db::get();
         return $db->fetchObject($db->select(array('COUNT(mid)' => 'num'))
-                    ->from('table.metas')
-                    ->where('table.metas.type = ?', 'category'))->num;
+            ->from('table.metas')
+            ->where('table.metas.type = ?', 'category'))->num;
     }
 
     /**
@@ -249,8 +286,8 @@ class Utils
     {
         $db = Typecho_Db::get();
         return $db->fetchObject($db->select(array('COUNT(mid)' => 'num'))
-                    ->from('table.metas')
-                    ->where('table.metas.type = ?', 'tag'))->num;
+            ->from('table.metas')
+            ->where('table.metas.type = ?', 'tag'))->num;
     }
 
     /**
@@ -258,9 +295,9 @@ class Utils
      */
     public static function hasVOIDPlugin($req)
     {
-        if(self::isPluginAvailable('VOID')) {
+        if (self::isPluginAvailable('VOID')) {
             $version_have = VOID_Plugin::$VERSION;
-            if($version_have >= $req) return true;
+            if ($version_have >= $req) return true;
         }
 
         return false;
@@ -295,7 +332,7 @@ class Utils
 
         $keys = array_keys($themeSetting);
         foreach ($keys as $key) {
-            if(!empty($options->{$key})){
+            if (!empty($options->{$key})) {
                 $themeSetting[$key] = $options->{$key};
             }
         }
@@ -329,7 +366,7 @@ class Utils
             'macStyleCodeBlock' => true,
             'lineNumbers' => true,
             'parseFigcaption' => true,
-            'darkModeTime' => array (
+            'darkModeTime' => array(
                 'start' => 22.0,
                 'end' => 7.0
             ),
@@ -340,15 +377,20 @@ class Utils
             'browserLevelLoadingLazy' => false,
             'CDNType' => array()
         );
-
-        if(!empty($options->advance)){
+        // 优先级：本地json > advance
+        if ($options->rad == '1') {
+            $setting = json_decode(file_get_contents('usr/themes/VOID/advanceSetting.json'), true);
+            foreach ($setting as $key => $value) {
+                $advanceSetting[$key] = $value;
+            }
+        } elseif (!empty($options->advance)) {
             $settings = json_decode($options->advance, true);
             foreach ($settings as $key => $value) {
                 $advanceSetting[$key] = $value;
             }
         }
 
-        if(self::isMobile() && array_key_exists('headerModeMobile', $advanceSetting)){
+        if (self::isMobile() && array_key_exists('headerModeMobile', $advanceSetting)) {
             $advanceSetting['headerMode'] = $advanceSetting['headerModeMobile'];
         }
 

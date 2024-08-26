@@ -233,3 +233,14 @@ aside#ctrler-panel > * {
   border-radius: 15%;
   margin-top: 2px;
 }
+
+/* ----- other ----- */
+article figure a,
+article figure a:hover {
+  border: 1px solid #413f3f;
+  border-radius: 5px;
+}
+
+li {
+  border-radius: 5px;
+}

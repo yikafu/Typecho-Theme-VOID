@@ -57,7 +57,6 @@ if(!Utils::isPjax()){
                                             <?php if($setting['bluredLazyload']): ?>
                                                 <img src="<?php echo Contents::genBluredPlaceholderSrc($this->fields->banner); ?>" class="blured-placeholder">
                                             <?php endif; ?>
-                                            <!-- 添加cid 方便使用别人的随机图api -->
                                             <img class="lazyload" data-src="<?php echo $this->fields->banner;?>">
                                         <?php endif; ?>
                                     <?php else: ?>

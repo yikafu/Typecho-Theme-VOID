@@ -162,7 +162,9 @@ body.theme-dark header .container nav span.dropdown.toggle span::before,
 body.theme-dark header.container nav span.dropdown.toggle span::after {
   background-color: #dfdfdf !important;
 }
-
+main .lazy-wrap.dark #banner{
+  filter: brightness(1);
+}
 /*----------------PC 端-----------------*/
 @media screen and (min-width: 767px) {
   header {
@@ -215,7 +217,7 @@ body.theme-dark header.container nav span.dropdown.toggle span::after {
 
   main .lazy-wrap {
     padding-top: 0;
-    height: 60vh;
+    height: 55vh;
     margin-top: 100px;
   }
 }

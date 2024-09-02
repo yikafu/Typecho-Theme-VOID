@@ -23,9 +23,11 @@ h1.post-title {
 
 header.header-mode-1 {
   z-index: 3;
-  position: relative;
+  position: fixed;
   background-color: #fff;
   color: #000;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
   backdrop-filter: initial;
   -webkit-backdrop-filter: initial;
 }
@@ -89,7 +91,7 @@ header .container nav span.dropdown:not(.brand):hover {
 ) {
   body:not(.theme-dark) header.force-dark,
   body:not(.theme-dark) header.pull-up {
-    background: none;
+    background: #fff;
   }
 }
 
@@ -214,6 +216,7 @@ body.theme-dark header.container nav span.dropdown.toggle span::after {
   main .lazy-wrap {
     padding-top: 0;
     height: 60vh;
+    margin-top: 100px;
   }
 }
 
@@ -226,5 +229,9 @@ body.theme-dark header.container nav span.dropdown.toggle span::after {
   header .container nav a#toggle-setting,
   header .container nav span.dropdown#toggle-setting {
     right: 2.25rem;
+  }
+
+  main .lazy-wrap{
+    margin-top: 50px;
   }
 }
